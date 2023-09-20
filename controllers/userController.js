@@ -2,25 +2,26 @@ const User = require('../models/User');
 const secret = require('../config/auth.json');
 const jwt = require('jsonwebtoken');
 
-/*
-const createUser = async (req, res) => {
-    const {            } = req.body;
-    await User.create({
-       
 
+const createUser = async (req, res) => {
+    const {name, email, password} = req.body;
+    await User.create({
+       name:name,
+       email:email,
+       password:password
 
     }).then(() => {
-        res.json('         ');
-        console.log('           ');
+        res.json('Sucesso ao criar usuário');
+        console.log('Sucesso ao criar usuário');
     }).catch((erro) => {
-        res.json('             ');
-        console.log(`  : ${erro}`);
+        res.json('Erro ao criar usuário');
+        console.log(`Erro ao criar usuário: ${erro}`);
     })
 }
 const findUsers = async (req, res) => {
-    const     = await User.findAll();
+    const users= await User.findAll();
     try {
-        res.json(    );
+        res.json(users);
     } catch (error) {
         res.status(404).json("Ocorreu um erro na busca!");
     };
@@ -31,13 +32,13 @@ const deleteUser = async (req, res) => {
     try {
         await User.destroy({
             where: {
-                
+                id:id
             }
         }).then(() => {
-            res.json("         ");
+            res.json("Sucesso ao excluir usuário");
         })
     } catch (error) {
-        res.status(404).json("      ");
+        res.status(404).json("Erro ao excluir usuário");
     }
 }
 const updateUser = async (req, res) => {
@@ -87,4 +88,3 @@ const authenticatedUser = async (req, res) => {
 
 
 module.exports = { createUser, findUsers, deleteUser, updateUser, authenticatedUser };
-*/
