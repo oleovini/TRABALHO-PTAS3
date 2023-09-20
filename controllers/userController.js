@@ -28,7 +28,7 @@ const findUsers = async (req, res) => {
 }
 
 const deleteUser = async (req, res) => {
-    const id = parseInt(req.params.id);
+    const id = {name, email, password} = req.body;
     try {
         await User.destroy({
             where: {
