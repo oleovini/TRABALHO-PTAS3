@@ -43,11 +43,13 @@ const deleteUser = async (req, res) => {
 }
 const updateUser = async (req, res) => {
     const id = parseInt(req.params.id);
-    const {       } = req.body;
+    const {name, email, password} = req.body;
     try {
         await User.update(
             {
-               
+               name:name,
+               email:email,
+               password:password
             },
             {
                 where: {
@@ -55,34 +57,35 @@ const updateUser = async (req, res) => {
                 }
             }
         ).then(() => {
-            res.json("            ");
+            res.json("Sucesso ao atualizar usuário");
         })
     } catch (error) {
-        res.status(404).json("                !");
+        res.status(404).json("Erro ao atualizar usuário!");
     }
 }
 const authenticatedUser = async (req, res) => {
-    const {       } = req.body;
+    const {email, password} = req.body;
     try {
         const isUserAuthenticated = await User.findOne({
             where: {
-                
+                email:email,
+                password:password
             }
         })
         const token = jwt.sign({
-            name: 
-            email: 
+            name: isUserAuthenticated.name,
+            email: isUserAuthenticated.email
         },
             secret.secret, {
             expiresIn: 86400,
         })
         return res.json({
-            name: 
+            name:  isUserAuthenticated.name,
             email: isUserAuthenticated.email,
             token: token
         });
     } catch (error) {
-        return res.json("");
+        return res.json("Erro ao autenticar usuário");
     }
 }
 
