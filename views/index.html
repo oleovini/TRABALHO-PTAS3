@@ -6,25 +6,93 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>API - Users</title>
 </head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+    html{
+        text-transform: uppercase;
+        color: white;
+        background: #252525;
+    }
 
+    .tecno{
+        margin: auto;
+    }
+    ul{
+        list-style: none;
+    }
+    .list{
+        font-weight: bold;
+    }
+    .listahttp{
+        display: flex;
+        padding-top: 2vw;
+        padding-bottom: 2vw;
+        justify-content: center;
+    }
+    .desc{
+        font-size: 15px;
+        justify-content: center;
+    }
+    .tit{
+        font-weight: bold;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+    .container{
+        border: 1px solid purple;
+        margin-bottom: 2vh;
+    }
+    h2{
+        text-align: center;
+    }
+
+
+</style>
 <body>
-    <div>
+    <div class="tecno">
         <h2>Tecnologias</h2>
         <ul>
-            <li>Sequelize Cli</li>
-            <li>Node</li>
-            <li>Express.js</li>
+            
+
+                <div class="container">
+                    <li class="tit">Sequelize Cli</li>
+                    <li class="desc">
+                        O Sequelize é um ORM, ou seja, um mapeador objeto-relacional. Isso significa que ele permite que você crie modelos (classes) em TypeScript ou JavaScript que representam as tabelas do seu banco de dados.
+                    </li>
+                </div>
+    
+             <div class="container">
+                <li  class="tit">Node
+                    <li>
+                        Node.js é um software de código aberto, multiplataforma, baseado no interpretador V8 do Google e que permite a execução de códigos JavaScript fora de um navegador web.
+                    </li>
+                </li>
+            </div>
+            <div class="container">
+                <li class="tit">Express.js
+                            <li>
+                                Express.js é um framework para Node.js que fornece recursos mínimos para construção de servidores web.
+                            </li>
+                </li>
+</div>
+                
+     
+    
+               
         </ul>
     </div>
-    <div>
+    <div class="endp">
         <h2>
             End Points
         </h2>
-        <ul>
-            <li>GET</li> <span>/users -- Obtem os usuários cadastrados</span>
-            <li>PUT</li> <span>/user/:id -- Atualiza um usuário</span>
-            <li>DELETE</li><span>/user/:id -- Deleta um usuário</span>
-            <li>POST</li><span>/user -- Cria um usuário no banco de dados  /user/authenticated --- Autentica um usuário</span>
+        <ul class="list">
+            <li class="listahttp">
+                GET -- <span>/users -- Obtem os usuários cadastrados</span>
+            </li>
+            <li class="listahttp">PUT -- <span>/user/:id -- Atualiza um usuário</span></li> 
+            <li class="listahttp">DELETE -- <span>/user/:id -- Deleta um usuário</span></li>
+            <li class="listahttp">POST -- <span>/user -- Cria um usuário no banco de dados  /user/authenticated --- Autentica um usuário</span></li>
         </ul>
     </div>
 </body>
