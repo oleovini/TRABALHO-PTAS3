@@ -69,13 +69,18 @@ const authenticatedUser = async (req, res) => {
     const { email, password} = req.body;
     try {
         const isUserAuthenticated = await User.findOne({
-            where: {
-                email:email
-            }
+            where: { email, password}
         })
 
-         if (!isUserAuthenticated){
-            return res.status(401).send('Email ou senha inválidos');
+        if(isUserAuthenticated) {
+            const token = jwt.sign({ id: email }, secret.secret, {
+                expiresIn: 86400
+            });
+            res.cookie('token', token, { httpOnly: true }).json({
+                name: isUserAuthenticated.name,
+                email: isUserAuthenticated.email,
+                token: token
+            });
         }
         const response = await bcript.compare(password, isUserAuthenticated.password)
 
