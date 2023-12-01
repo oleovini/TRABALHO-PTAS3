@@ -67,13 +67,15 @@ const updateUser = async (req, res) => {
     }
 }
 const authenticatedUser = async (req, res) => {
-    const { email, password} = req.body;
+    const { email, password } = req.body;
+
     try {
         const isUserAuthenticated = await User.findOne({
-            where: { email, password}
+            where: { email }
         })
+        const passwordvalideted = bcript.compare(password , isUserAuthenticated.password);
 
-        if(isUserAuthenticated) {
+        if(passwordvalideted) {
             const token = jwt.sign({ id: email }, process.env.SECRET, {
                 expiresIn: 86400
             });
@@ -83,25 +85,14 @@ const authenticatedUser = async (req, res) => {
                 token: token
             });
         }
-        const response = await bcript.compare(password, isUserAuthenticated.password)
-
-        
-        const token = jwt.sign({
-            name: isUserAuthenticated.name,
-            email: isUserAuthenticated.email
-        },
-            secret.secret, {
-            expiresIn: 86400,
-        })
-        return res.json({
-            name:  isUserAuthenticated.name,
-            email: isUserAuthenticated.email,
-            token: token
-        });
-    } catch (error) {
-        return res.json("Erro ao autenticar usuário");
+        else{
+            res.status(401).json({ message: 'User not found or authentication failed'})
+        }
+    }
+    catch (error) {
+        console.error(`Error: ${error}`)
+        res.status(500).json({ message: 'Error occurred during authentication'})
     }
 }
-
 
 module.exports = { createUser, findUsers, deleteUser, updateUser, authenticatedUser };
