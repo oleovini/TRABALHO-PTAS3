@@ -2,7 +2,7 @@ const User = require('../models/User');
 const secret = require('../config/auth.json');
 const bcript = require("bcryptjs");
 const jwt = require('jsonwebtoken');
-require('dotenv')npm 
+require('dotenv').config
 
 
 const createUser = async (req, res) => {
